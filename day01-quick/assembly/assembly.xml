@@ -1,0 +1,39 @@
+<assembly>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources/${profiles.active}</directory>
+<!--            将resources下的内容复制到conf下-->
+            <outputDirectory>conf</outputDirectory>
+            <includes>
+<!--                复制的内容-->
+                <include>*.xml</include>
+<!--                当前目录下-->
+                <include>*.properties</include>
+                <include>**/*.xml</include>
+<!--                子目录下-->
+                <include>**/*.properties</include>
+
+            </includes>
+            <fileMode>0644</fileMode>
+<!--            执行权限为：当前用户-可读写 用户组-只读 其他用户-只读-->
+        </fileSet>
+        <fileSet>
+            <directory>assembly/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <fileMode>0755</fileMode>
+<!--            当前用户-可读写+运行 用户组-只读+可运行 其他用户-只读+可运行-->
+
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+<!--            可依赖关系放在lib下-->
+        </dependencySet>
+    </dependencySets>
+
+</assembly>
